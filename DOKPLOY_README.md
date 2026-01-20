@@ -3,16 +3,27 @@
 ## Problema
 Se você está enfrentando erro **502 Bad Gateway** no Dokploy, mesmo com o build sendo bem-sucedido, use este guia.
 
-## ✅ Solução Rápida
+## ✅ SOLUÇÃO PARA MÚLTIPLAS APPS NO DOKPLOY
 
-### 1. Use o Dockerfile Simplificado
-No Dokploy, configure para usar: `Dockerfile.simple` ao invés de `Dockerfile`
+### 🎯 Problema Identificado: Conflito de Portas!
+
+Quando você tem **múltiplas aplicações** no Dokploy, o problema é **conflito de portas**. Seu outro projeto usa a porta 3000, então este projeto não pode usar a porta 80.
+
+### 🚀 Solução: Use Porta 3000
+
+**Arquivo Dockerfile:** `Dockerfile.nextjs-style`
 
 **Configurações no Dokploy:**
 - **Build Method**: Docker
-- **Dockerfile Path**: `./Dockerfile.simple`
-- **Port**: `80`
+- **Dockerfile Path**: `./Dockerfile.nextjs-style` ⭐
+- **Port**: `3000` ⭐ (igual ao seu outro projeto)
 - **Health Check Path**: `/health`
+
+**Por que isso funciona:**
+- Evita conflito com sua outra aplicação Next.js (que usa porta 3000)
+- Usa a mesma arquitetura de porta que já funciona no seu Dokploy
+- Nginx escuta na porta 3000 internamente, igual ao seu projeto Next.js
+- Dokploy consegue rotear corretamente sem conflitos de rede
 
 ### 2. Verificação
 Após o deploy, teste:

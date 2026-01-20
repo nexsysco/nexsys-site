@@ -35,11 +35,16 @@ O projeto já vem com:
    - Configure a branch (normalmente `main` ou `master`)
 
 3. **Configurações da Aplicação:**
+
+   **⚠️ IMPORTANTE:** Se você tem múltiplas aplicações no Dokploy:
    - **Build Method**: `Docker`
-   - **Dockerfile Path**: `./Dockerfile.simple` (recomendado para Dokploy)
-   - **Port**: `80` (exposto pelo nginx)
-   - **Domain**: Configure seu domínio personalizado
+   - **Dockerfile Path**: `./Dockerfile.nextjs-style` ⭐
+   - **Port**: `3000` ⭐ (compatível com seu projeto Next.js)
    - **Health Check Path**: `/health`
+
+   **Para única aplicação:**
+   - **Dockerfile Path**: `./Dockerfile.simple`
+   - **Port**: `80`
 
 4. **Environment Variables (opcional):**
    ```
