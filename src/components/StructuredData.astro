@@ -1,0 +1,83 @@
+---
+export interface Props {
+  type?: 'website' | 'organization';
+}
+
+const { type = 'website' } = Astro.props;
+
+const structuredData = type === 'organization' ? {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nexsys",
+  "url": "https://nexsys.com.br",
+  "logo": "https://nexsys.com.br/logo.png",
+  "description": "Consultoria especializada em soluções tecnológicas que impulsionam o crescimento do seu negócio através de inovação e eficiência.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+55-11-9999-9999",
+    "contactType": "customer service",
+    "availableLanguage": "Portuguese"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/nexsys",
+    "https://twitter.com/nexsysbr"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Serviços de Consultoria em Tecnologia",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Consultoria Estratégica",
+          "description": "Análise completa dos seus processos e definição de estratégias tecnológicas"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Desenvolvimento de Software",
+          "description": "Criação de aplicações web e mobile personalizadas"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Infraestrutura e Cloud",
+          "description": "Migração e gerenciamento de infraestrutura em nuvem"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Segurança da Informação",
+          "description": "Implementação de soluções de segurança para proteger seus dados"
+        }
+      }
+    ]
+  }
+} : {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nexsys - Consultoria em Tecnologia",
+  "url": "https://nexsys.com.br",
+  "description": "Consultoria especializada em soluções tecnológicas que impulsionam o crescimento do seu negócio através de inovação e eficiência.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nexsys",
+    "url": "https://nexsys.com.br"
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>

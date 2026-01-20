@@ -1,0 +1,14 @@
+{
+  "name": "nexsys-site",
+  "description": "Site institucional da Nexsys - Consultoria em Tecnologia",
+  "version": "1.0.0",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "startCommand": "npm run preview",
+  "port": 4321,
+  "healthCheckPath": "/health",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
