@@ -36,9 +36,10 @@ O projeto já vem com:
 
 3. **Configurações da Aplicação:**
    - **Build Method**: `Docker`
-   - **Dockerfile Path**: `./Dockerfile` (padrão)
+   - **Dockerfile Path**: `./Dockerfile.simple` (recomendado para Dokploy)
    - **Port**: `80` (exposto pelo nginx)
    - **Domain**: Configure seu domínio personalizado
+   - **Health Check Path**: `/health`
 
 4. **Environment Variables (opcional):**
    ```
@@ -95,6 +96,17 @@ Após o deploy, você pode verificar:
 - A aplicação é servida por nginx (muito rápido)
 - Assets são cacheados por 1 ano
 - Gzip está habilitado
+
+**Bad Gateway (502) Error:**
+- Use `Dockerfile.simple` ao invés do `Dockerfile` padrão
+- Certifique-se que a porta está configurada como `80`
+- Verifique se o health check `/health` está respondendo
+- Tente rebuild forçado no Dokploy
+
+**Container não inicia:**
+- Verifique os logs da aplicação no Dokploy
+- Certifique-se que o build está completando com sucesso
+- Teste localmente: `docker build -f Dockerfile.simple -t test . && docker run -p 8080:80 test`
 
 ### 🌐 Desenvolvimento Local com Docker
 

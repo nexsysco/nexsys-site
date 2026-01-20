@@ -4,11 +4,14 @@
   "version": "1.0.0",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "startCommand": "npm run preview",
-  "port": 4321,
+  "installCommand": "npm ci",
+  "startCommand": "nginx -g 'daemon off;'",
+  "port": 80,
   "healthCheckPath": "/health",
+  "healthCheckPort": 80,
+  "dockerfile": "Dockerfile",
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "restartPolicy": "unless-stopped"
 }
